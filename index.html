@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#b98a3c" />
+  <meta name="description" content="HAUT Clinical Center en Querétaro. Depilación láser diodo, tratamientos faciales, corporales y medicina estética. Sucursales Zibatá, Álamos y Centro Sur." />
+  <title>haut — Clinical Center Querétaro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --gold-900:#6e4c1f;
+      --gold-800:#86602a;
+      --gold-700:#a57432;
+      --gold-600:#bd8b42;
+      --gold-500:#d0a256;
+      --gold-400:#e1bd78;
+      --gold-300:#ecd49e;
+      --gold-200:#f5e8c8;
+      --gold-100:#fbf5e8;
+      --ink:#25211b;
+      --muted:#756c5e;
+      --line:#eadfc9;
+      --white:#fff;
+      --cream:#fdfbf7;
+      --shadow:0 24px 80px rgba(111,79,31,.12);
+      --radius:26px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:"DM Sans",sans-serif;color:var(--ink);background:var(--cream);line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .container{width:min(1180px,calc(100% - 40px));margin:auto}
+    .topbar{
+      background:linear-gradient(90deg,var(--gold-900),var(--gold-600),var(--gold-900));
+      color:white;min-height:39px;display:grid;place-items:center;overflow:hidden;position:relative
+    }
+    .promo-track{display:flex;width:300%;transition:transform .55s ease}
+    .promo-slide{width:33.3333%;flex:0 0 33.3333%;text-align:center;padding:9px 42px;font-size:13px;letter-spacing:.02em}
+    .promo-nav{position:absolute;right:15px;display:flex;gap:5px}
+    .promo-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.45);border:0;padding:0}
+    .promo-dot.active{background:#fff}
+    header{
+      position:sticky;top:0;z-index:50;background:rgba(253,251,247,.9);
+      border-bottom:1px solid rgba(218,194,151,.55);backdrop-filter:blur(16px)
+    }
+    .nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:600;font-size:42px;line-height:1;color:var(--gold-800);letter-spacing:-.04em}
+    .navlinks{display:flex;gap:28px;align-items:center;font-size:14px}
+    .navlinks a{color:#5d5549}
+    .navlinks a:hover{color:var(--gold-800)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:999px;padding:13px 20px;border:1px solid var(--gold-700);cursor:pointer;transition:.2s}
+    .btn-primary{background:linear-gradient(135deg,var(--gold-800),var(--gold-500));color:white;box-shadow:0 10px 28px rgba(165,116,50,.22)}
+    .btn-primary:hover{transform:translateY(-1px)}
+    .btn-ghost{background:rgba(255,255,255,.6);color:var(--gold-900)}
+    .menu-btn{display:none;border:0;background:none;font-size:26px;color:var(--gold-900)}
+    .hero{padding:72px 0 68px;position:relative;overflow:hidden}
+    .hero:before{
+      content:"";position:absolute;width:560px;height:560px;border-radius:50%;
+      background:radial-gradient(circle,var(--gold-200),rgba(245,232,200,0) 67%);
+      right:-160px;top:-130px;pointer-events:none
+    }
+    .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:54px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--gold-800);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+    .eyebrow:before{content:"";width:34px;height:1px;background:var(--gold-500)}
+    h1,h2,h3{font-family:"Cormorant Garamond",serif;line-height:1.02;margin:0}
+    h1{font-size:clamp(58px,7.2vw,100px);font-weight:500;letter-spacing:-.045em;margin:18px 0 23px}
+    h1 em{color:var(--gold-700);font-weight:500}
+    .lead{font-size:18px;color:var(--muted);max-width:650px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .hero-proof{display:flex;gap:28px;flex-wrap:wrap;margin-top:40px}
+    .proof strong{font-family:"Cormorant Garamond",serif;font-size:30px;color:var(--gold-800)}
+    .proof span{display:block;font-size:12px;color:var(--muted);margin-top:-2px}
+    .visual{
+      min-height:590px;border-radius:36px;position:relative;overflow:hidden;
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.72)),
+        radial-gradient(circle at 24% 20%,#f8e9bd 0 18%,transparent 19%),
+        radial-gradient(circle at 76% 38%,#d5aa61 0 12%,transparent 13%),
+        linear-gradient(160deg,#8d642c 0%,#c8994f 42%,#f1deb1 100%);
+      box-shadow:var(--shadow);isolation:isolate
+    }
+    .visual:before{content:"";position:absolute;inset:0;background:
+      linear-gradient(120deg,transparent 0 42%,rgba(255,255,255,.38) 43% 44%,transparent 45%),
+      linear-gradient(20deg,transparent 0 60%,rgba(255,255,255,.2) 61% 63%,transparent 64%)}
+    .visual .v-copy{position:absolute;left:42px;right:42px;bottom:42px;background:rgba(255,255,255,.88);backdrop-filter:blur(15px);padding:28px;border-radius:22px;border:1px solid rgba(255,255,255,.8);z-index:2}
+    .visual .v-copy small{color:var(--gold-800);font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+    .visual .v-copy h3{font-size:35px;margin:6px 0 8px}
+    .visual .v-tag{position:absolute;top:32px;right:32px;background:white;color:var(--gold-900);border-radius:999px;padding:10px 15px;font-size:12px;z-index:2}
+    .orb{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.58);z-index:1}
+    .orb.one{width:280px;height:280px;left:-60px;top:105px}
+    .orb.two{width:180px;height:180px;right:30px;top:145px}
+    .section{padding:90px 0}
+    .section.alt{background:#fff}
+    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:40px}
+    .section-head h2{font-size:clamp(45px,5vw,67px);font-weight:500;letter-spacing:-.035em}
+    .section-head p{max-width:530px;color:var(--muted);margin:0}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+    .tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 16px;color:#6f6658;cursor:pointer}
+    .tab.active{background:var(--gold-800);border-color:var(--gold-800);color:#fff}
+    .treatments{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:.2s;position:relative;overflow:hidden}
+    .card:hover{transform:translateY(-4px);box-shadow:0 20px 55px rgba(117,83,35,.10)}
+    .card .icon{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--gold-100);color:var(--gold-800);font-size:20px}
+    .card h3{font-size:30px;margin:18px 0 8px}
+    .card p{color:var(--muted);font-size:14px;margin:0 0 16px}
+    .meta{display:flex;gap:8px;flex-wrap:wrap}
+    .pill{font-size:11px;background:#fbf7ee;border:1px solid #eee1c8;border-radius:999px;padding:5px 9px;color:#74634b}
+    .card[hidden]{display:none}
+    .feature-wrap{display:grid;grid-template-columns:.92fr 1.08fr;gap:60px;align-items:center}
+    .feature-art{height:560px;border-radius:36px;background:
+      linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,.65)),
+      linear-gradient(140deg,#f0dcae,#b98239 52%,#795324);position:relative;overflow:hidden;box-shadow:var(--shadow)}
+    .feature-art:before{content:"HAUT";font-family:"Cormorant Garamond";font-size:150px;letter-spacing:.15em;color:rgba(255,255,255,.16);position:absolute;transform:rotate(-90deg);left:-68px;top:180px}
+    .feature-art:after{content:"";position:absolute;width:250px;height:420px;border:1px solid rgba(255,255,255,.45);border-radius:120px 120px 24px 24px;right:80px;top:72px;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.04));box-shadow:inset 0 0 60px rgba(255,255,255,.14)}
+    .checks{display:grid;gap:18px;margin-top:28px}
+    .check{display:grid;grid-template-columns:42px 1fr;gap:14px;align-items:start}
+    .check b{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--gold-100);color:var(--gold-800)}
+    .check h4{margin:2px 0 4px}
+    .check p{margin:0;color:var(--muted);font-size:14px}
+    .branches{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .branch{background:linear-gradient(180deg,#fff,#fcf7ec);border:1px solid var(--line);border-radius:var(--radius);padding:28px;min-height:285px;display:flex;flex-direction:column}
+    .branch .num{font-family:"Cormorant Garamond";font-size:52px;color:var(--gold-300);line-height:1}
+    .branch h3{font-size:34px;margin:6px 0 12px}
+    .branch p{color:var(--muted);font-size:14px;margin:0 0 8px}
+    .branch .actions{margin-top:auto;display:flex;gap:8px}
+    .testimonials{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+    .quote{background:var(--gold-900);color:white;border-radius:32px;padding:40px}
+    .quote p{font-family:"Cormorant Garamond";font-size:38px;line-height:1.15;margin:0}
+    .quote small{display:block;margin-top:22px;color:#ead6ae}
+    .notice{background:var(--gold-100);border:1px solid var(--gold-200);border-radius:32px;padding:36px;display:flex;flex-direction:column;justify-content:center}
+    .notice h3{font-size:36px}
+    .notice p{color:var(--muted)}
+    .faq{display:grid;grid-template-columns:.7fr 1.3fr;gap:48px}
+    details{border-bottom:1px solid var(--line);padding:19px 0}
+    summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:20px}
+    summary::after{content:"+";font-size:22px;color:var(--gold-700)}
+    details[open] summary::after{content:"−"}
+    details p{color:var(--muted);font-size:14px;max-width:700px}
+    .cta{padding:90px 0}
+    .cta-box{border-radius:38px;padding:62px;background:
+      radial-gradient(circle at 85% 20%,rgba(255,255,255,.18),transparent 24%),
+      linear-gradient(135deg,var(--gold-900),var(--gold-600));color:#fff;display:flex;justify-content:space-between;gap:32px;align-items:center;overflow:hidden}
+    .cta-box h2{font-size:clamp(42px,5vw,65px);font-weight:500;max-width:650px}
+    footer{border-top:1px solid var(--line);padding:42px 0 28px;background:#fff}
+    .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:30px}
+    footer h4{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-800)}
+    footer p,footer a{font-size:13px;color:var(--muted)}
+    .copyright{margin-top:35px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;font-size:12px;color:#908777}
+    .wa{position:fixed;right:22px;bottom:22px;z-index:60;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--gold-800);color:white;box-shadow:0 14px 35px rgba(96,66,27,.25);font-size:23px}
+    .modal{position:fixed;inset:0;background:rgba(29,24,17,.55);backdrop-filter:blur(8px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+    .modal.open{display:flex}
+    .modal-card{background:#fff;border-radius:28px;padding:28px;width:min(500px,100%);box-shadow:0 30px 90px rgba(0,0,0,.25)}
+    .modal-head{display:flex;justify-content:space-between;align-items:center}
+    .modal-head h3{font-size:38px}
+    .close{border:0;background:#f5efe4;border-radius:50%;width:38px;height:38px;cursor:pointer}
+    .modal-grid{display:grid;gap:10px;margin-top:18px}
+    .modal-grid a{border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center}
+    .source-note{font-size:11px;color:#a09788;margin-top:14px}
+    @media(max-width:900px){
+      .navlinks{display:none;position:absolute;left:20px;right:20px;top:126px;background:#fff;padding:18px;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch}
+      .navlinks.open{display:flex}.menu-btn{display:block}.nav .btn-primary{display:none}
+      .hero{padding-top:45px}.hero-grid,.feature-wrap,.testimonials,.faq{grid-template-columns:1fr}.visual{min-height:450px}
+      .treatments,.branches{grid-template-columns:1fr 1fr}.feature-art{height:420px}.section{padding:70px 0}
+      .section-head{display:block}.section-head p{margin-top:15px}.footer-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:620px){
+      .container{width:min(100% - 28px,1180px)}.promo-slide{font-size:11px;padding-left:18px;padding-right:48px}
+      .nav{height:70px}.brand{font-size:37px}.hero-grid{gap:30px}h1{font-size:58px}.lead{font-size:16px}
+      .visual{min-height:390px;border-radius:28px}.visual .v-copy{left:18px;right:18px;bottom:18px;padding:20px}.visual .v-copy h3{font-size:29px}.visual .v-tag{top:18px;right:18px}
+      .treatments,.branches{grid-template-columns:1fr}.feature-art{height:360px}.cta-box{padding:38px 25px;display:block}.cta-box .btn{margin-top:22px}
+      .footer-grid{grid-template-columns:1fr}.copyright{display:block}.hero-proof{gap:18px}.proof strong{font-size:26px}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="promo-track" id="promoTrack">
+      <div class="promo-slide">Valoración disponible para depilación láser · agenda tu cita</div>
+      <div class="promo-slide">Faciales, corporales y medicina estética en Querétaro</div>
+      <div class="promo-slide">3 sucursales: Zibatá · Álamos · Centro Sur</div>
+    </div>
+    <div class="promo-nav">
+      <button class="promo-dot active" aria-label="Promoción 1"></button>
+      <button class="promo-dot" aria-label="Promoción 2"></button>
+      <button class="promo-dot" aria-label="Promoción 3"></button>
+    </div>
+  </div>
+
+  <header>
+    <div class="container nav">
+      <a href="#" class="brand" aria-label="HAUT inicio">haut</a>
+      <nav class="navlinks" id="navLinks">
+        <a href="#tratamientos">Tratamientos</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#sucursales">Sucursales</a>
+        <a href="#faq">Preguntas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+      <button class="btn btn-primary open-booking">Agendar cita</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Clinical Center · Querétaro</span>
+          <h1>Tu piel, en su mejor <em>versión.</em></h1>
+          <p class="lead">Tratamientos de depilación láser diodo, cuidado facial, aparatología corporal y medicina estética con atención personalizada en Zibatá, Álamos y Centro Sur.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary open-booking">Quiero agendar</button>
+            <a class="btn btn-ghost" href="#tratamientos">Ver tratamientos</a>
+          </div>
+          <div class="hero-proof">
+            <div class="proof"><strong>3</strong><span>sucursales en Querétaro</span></div>
+            <div class="proof"><strong>4</strong><span>áreas de tratamiento</span></div>
+            <div class="proof"><strong>+50</strong><span>opciones en AgendaPro*</span></div>
+          </div>
+        </div>
+        <div class="visual" aria-label="Concepto visual HAUT">
+          <span class="v-tag">HAUT Clinical Center</span>
+          <div class="orb one"></div><div class="orb two"></div>
+          <div class="v-copy">
+            <small>Cuidado personalizado</small>
+            <h3>Estética clínica con una experiencia serena y premium.</h3>
+            <span style="font-size:13px;color:#776b5b">Zibatá · Álamos · Centro Sur</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="tratamientos">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="eyebrow">Servicios reales</span><h2>Tratamientos HAUT</h2></div>
+          <p>Selección construida a partir del catálogo público de HAUT en AgendaPro. La disponibilidad, precio y número de sesiones pueden cambiar por sucursal y promoción.</p>
+        </div>
+        <div class="tabs">
+          <button class="tab active" data-filter="all">Todos</button>
+          <button class="tab" data-filter="laser">Depilación láser</button>
+          <button class="tab" data-filter="facial">Faciales</button>
+          <button class="tab" data-filter="body">Corporales</button>
+          <button class="tab" data-filter="medical">Medicina estética</button>
+        </div>
+        <div class="treatments">
+          <article class="card" data-cat="laser"><div class="icon">✦</div><h3>Depilación láser diodo</h3><p>Protocolos por zonas, medio cuerpo o cuerpo completo, con paquetes de varias sesiones.</p><div class="meta"><span class="pill">Axilas</span><span class="pill">Bikini</span><span class="pill">Piernas</span><span class="pill">Cuerpo completo</span></div></article>
+          <article class="card" data-cat="facial"><div class="icon">◌</div><h3>Hidrafacial</h3><p>Servicio facial disponible en una o varias sesiones dentro del catálogo de HAUT.</p><div class="meta"><span class="pill">60–75 min*</span><span class="pill">1–3 sesiones*</span></div></article>
+          <article class="card" data-cat="facial"><div class="icon">◇</div><h3>HIFU facial</h3><p>Tratamiento de aparatología facial listado por HAUT para sesiones de aproximadamente 60 minutos.</p><div class="meta"><span class="pill">Aparatología</span><span class="pill">60 min*</span></div></article>
+          <article class="card" data-cat="facial"><div class="icon">✧</div><h3>Hollywood Peel</h3><p>Tratamiento facial que HAUT ofrece tanto por sesión como en paquetes de varias sesiones.</p><div class="meta"><span class="pill">Facial</span><span class="pill">Sesión / paquete</span></div></article>
+          <article class="card" data-cat="facial"><div class="icon">☼</div><h3>Dermapen</h3><p>Disponible como tratamiento individual y en paquetes; también aparece dentro de medicina estética.</p><div class="meta"><span class="pill">Microneedling</span><span class="pill">1–5 sesiones*</span></div></article>
+          <article class="card" data-cat="facial"><div class="icon">◫</div><h3>Limpieza facial profunda</h3><p>Protocolos de limpieza facial profunda disponibles por sesión y en paquetes.</p><div class="meta"><span class="pill">90 min*</span><span class="pill">Cuidado facial</span></div></article>
+          <article class="card" data-cat="body"><div class="icon">⌁</div><h3>Carboxiterapia</h3><p>Opciones por zona, medio cuerpo y cuerpo completo, disponibles en distintas cantidades de sesiones.</p><div class="meta"><span class="pill">Corporal</span><span class="pill">Protocolos por zona</span></div></article>
+          <article class="card" data-cat="body"><div class="icon">◎</div><h3>Cavitación</h3><p>Tratamiento corporal listado en sesiones individuales y paquetes de 5 o 10 sesiones.</p><div class="meta"><span class="pill">Aparatología corporal</span></div></article>
+          <article class="card" data-cat="body"><div class="icon">≋</div><h3>Drenaje linfático</h3><p>Sesiones de drenaje linfático y protocolos postoperatorios dentro de la oferta corporal.</p><div class="meta"><span class="pill">Corporal</span><span class="pill">Postoperatorio*</span></div></article>
+          <article class="card" data-cat="body"><div class="icon">◐</div><h3>Criolipólisis</h3><p>Opciones con distintos números de aplicadores, según el protocolo publicado en AgendaPro.</p><div class="meta"><span class="pill">Corporal</span></div></article>
+          <article class="card" data-cat="medical"><div class="icon">＋</div><h3>Botox</h3><p>En Álamos se publica aplicación por unidad y un protocolo de tres zonas con retoque.</p><div class="meta"><span class="pill">Medicina estética</span><span class="pill">Valoración recomendada</span></div></article>
+          <article class="card" data-cat="medical"><div class="icon">✺</div><h3>Venus Viva</h3><p>Tratamiento de medicina estética publicado en el catálogo de la sucursal Álamos.</p><div class="meta"><span class="pill">3 sesiones*</span><span class="pill">60 min*</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experiencia">
+      <div class="container feature-wrap">
+        <div class="feature-art" aria-hidden="true"></div>
+        <div>
+          <span class="eyebrow">La experiencia HAUT</span>
+          <h2 style="font-size:clamp(47px,5vw,68px);margin-top:12px">Cuidado clínico, sin perder la calma.</h2>
+          <p class="lead" style="font-size:16px;margin-top:18px">HAUT se presenta como una clínica de medicina estética enfocada en depilación láser, tratamientos faciales y corporales. La propuesta de esta landing prioriza una experiencia visual limpia, premium y fácil de reservar.</p>
+          <div class="checks">
+            <div class="check"><b>01</b><div><h4>Valoración antes de elegir</h4><p>AgendaPro contempla consulta de valoración para depilación y valoración necesaria para tratamientos médico-estéticos.</p></div></div>
+            <div class="check"><b>02</b><div><h4>Protocolos por objetivo</h4><p>Hay opciones individuales y paquetes de sesiones para rostro, cuerpo y depilación.</p></div></div>
+            <div class="check"><b>03</b><div><h4>Tres ubicaciones</h4><p>Zibatá, Álamos y Centro Sur permiten acercar la experiencia a distintas zonas de Querétaro.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="sucursales">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="eyebrow">Encuentra tu HAUT</span><h2>3 sucursales</h2></div>
+          <p>Los datos de dirección y horarios mostrados aquí se basan en los perfiles públicos disponibles de HAUT y AgendaPro.</p>
+        </div>
+        <div class="branches">
+          <article class="branch"><span class="num">01</span><h3>Zibatá</h3><p>Avenida Paseo de las Pitahayas 32, Zibatá, Querétaro.</p><p>Lun–Vie 10:00–19:00 · Sáb 10:00–15:00 · Dom cerrado.</p><div class="actions"><a class="btn btn-primary" target="_blank" rel="noopener" href="https://agendapro.com/site/mx/clinicadegrupotcsaludybienestarsderldecvinactiveinactive/84537">AgendaPro</a></div></article>
+          <article class="branch"><span class="num">02</span><h3>Álamos</h3><p>Circuito Álamos 47, Local B, Santiago de Querétaro.</p><p>Lun–Vie 09:00–19:00 · Sáb 10:00–15:00 · Dom cerrado.</p><div class="actions"><a class="btn btn-primary" target="_blank" rel="noopener" href="https://agendapro.com/site/mx/clinicadegrupotcsaludybienestarsderldecvinactiveinactive/24767">AgendaPro</a></div></article>
+          <article class="branch"><span class="num">03</span><h3>Centro Sur</h3><p>Avenida Fray Luis de León, zona Centro Sur, Santiago de Querétaro.</p><p>Consulta disponibilidad y horarios al reservar.</p><div class="actions"><a class="btn btn-primary wa-link" data-branch="Centro Sur" href="#">Consultar</a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container testimonials">
+        <div class="quote">
+          <p>“Brindamos una atención real en una clínica de la más alta calidad… somos genuinos, somos auténticos, somos Haut.”</p>
+          <small>Descripción pública atribuida a HAUT Clinical Center</small>
+        </div>
+        <div class="notice">
+          <span class="eyebrow">Promociones</span>
+          <h3>Campañas que cambian durante el año.</h3>
+          <p>HAUT publica promociones de depilación y paquetes faciales/corporales. Para evitar mostrar una oferta vencida, esta página dirige a confirmación directa antes de pagar.</p>
+          <button class="btn btn-primary open-booking" style="align-self:flex-start">Consultar promociones</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="faq">
+      <div class="container faq">
+        <div><span class="eyebrow">Preguntas frecuentes</span><h2 style="font-size:clamp(45px,5vw,66px);margin-top:12px">Antes de tu cita</h2></div>
+        <div>
+          <details open><summary>¿Qué tratamientos ofrecen?</summary><p>En sus perfiles públicos aparecen depilación láser diodo, tratamientos faciales, corporales y medicina estética. Entre ellos: HIFU, Hidrafacial, Dermapen, Hollywood Peel, limpiezas faciales, carboxiterapia, cavitación, criolipólisis, drenaje linfático, Botox y Venus Viva, entre otros.</p></details>
+          <details><summary>¿Necesito valoración?</summary><p>HAUT publica una consulta de valoración para depilación y especifica que la valoración es necesaria para tratamientos médico-estéticos. La clínica puede indicar el protocolo adecuado según cada caso.</p></details>
+          <details><summary>¿Los precios son iguales en las tres sucursales?</summary><p>No necesariamente. Los catálogos y promociones pueden variar. Por eso esta landing no fija precios promocionales y te lleva a AgendaPro o WhatsApp para confirmar la tarifa vigente.</p></details>
+          <details><summary>¿Puedo cancelar o modificar una reserva?</summary><p>En los perfiles públicos de Zibatá y Álamos, AgendaPro indica cancelación hasta 3 horas antes y hasta 2 modificaciones de la reserva. Conviene confirmar estas condiciones al momento de agendar.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contacto">
+      <div class="container">
+        <div class="cta-box">
+          <div><span style="font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#f2dbac">Tu siguiente cita</span><h2>Elige tu sucursal y encuentra el tratamiento ideal para ti.</h2></div>
+          <button class="btn open-booking" style="background:#fff;color:var(--gold-900);border-color:#fff;white-space:nowrap">Agendar ahora</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div><a class="brand" href="#">haut</a><p>Clinical Center · Querétaro<br>Depilación láser · Faciales · Corporales · Medicina estética</p></div>
+        <div><h4>Sucursales</h4><p>Zibatá<br>Álamos<br>Centro Sur</p></div>
+        <div><h4>Contacto</h4><a href="tel:+524428018951">+52 442 801 8951</a><br><a class="wa-link" data-branch="general" href="#">WhatsApp</a></div>
+      </div>
+      <div class="copyright"><span>© 2026 HAUT Clinical Center — concepto de landing informativa.</span><span>*Servicios, duración y disponibilidad sujetos a confirmación.</span></div>
+    </div>
+  </footer>
+
+  <a class="wa wa-link" data-branch="general" href="#" aria-label="WhatsApp">✆</a>
+
+  <div class="modal" id="bookingModal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head"><div><span class="eyebrow">Reserva</span><h3>Elige tu sucursal</h3></div><button class="close" id="closeModal">×</button></div>
+      <div class="modal-grid">
+        <a target="_blank" rel="noopener" href="https://agendapro.com/site/mx/clinicadegrupotcsaludybienestarsderldecvinactiveinactive/84537"><span><b>Zibatá</b><br><small>Reservar en AgendaPro</small></span><span>→</span></a>
+        <a target="_blank" rel="noopener" href="https://agendapro.com/site/mx/clinicadegrupotcsaludybienestarsderldecvinactiveinactive/24767"><span><b>Álamos</b><br><small>Reservar en AgendaPro</small></span><span>→</span></a>
+        <a class="wa-link" data-branch="Centro Sur" href="#"><span><b>Centro Sur</b><br><small>Consultar por WhatsApp</small></span><span>→</span></a>
+      </div>
+      <p class="source-note">Teléfono público mostrado por HAUT en AgendaPro: +52 442 801 8951.</p>
+    </div>
+  </div>
+
+  <script>
+    // Promo carousel
+    const track=document.getElementById('promoTrack'), dots=[...document.querySelectorAll('.promo-dot')];
+    let pi=0;
+    function promo(i){pi=i;track.style.transform=`translateX(-${i*33.3333}%)`;dots.forEach((d,n)=>d.classList.toggle('active',n===i))}
+    dots.forEach((d,i)=>d.onclick=()=>promo(i));
+    setInterval(()=>promo((pi+1)%3),4500);
+
+    // Mobile menu
+    const menuBtn=document.getElementById('menuBtn'), navLinks=document.getElementById('navLinks');
+    menuBtn.onclick=()=>navLinks.classList.toggle('open');
+    navLinks.querySelectorAll('a').forEach(a=>a.onclick=()=>navLinks.classList.remove('open'));
+
+    // Treatment filters
+    const tabs=[...document.querySelectorAll('.tab')], cards=[...document.querySelectorAll('.card[data-cat]')];
+    tabs.forEach(t=>t.onclick=()=>{
+      tabs.forEach(x=>x.classList.remove('active')); t.classList.add('active');
+      const f=t.dataset.filter; cards.forEach(c=>c.hidden=!(f==='all'||c.dataset.cat===f));
+    });
+
+    // Booking modal
+    const modal=document.getElementById('bookingModal');
+    document.querySelectorAll('.open-booking').forEach(b=>b.onclick=()=>{modal.classList.add('open');modal.setAttribute('aria-hidden','false')});
+    document.getElementById('closeModal').onclick=()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true')};
+    modal.onclick=e=>{if(e.target===modal) document.getElementById('closeModal').click()};
+
+    // WhatsApp
+    document.querySelectorAll('.wa-link').forEach(a=>{
+      const branch=a.dataset.branch||'general';
+      const msg=branch==='general'
+        ? 'Hola, me gustaría conocer promociones y agendar una cita en HAUT Clinical Center.'
+        : `Hola, me gustaría conocer promociones y agendar una cita en HAUT ${branch}.`;
+      a.href='https://wa.me/524428018951?text='+encodeURIComponent(msg);
+      a.target='_blank';a.rel='noopener';
+    });
+  </script>
+</body>
+</html>
