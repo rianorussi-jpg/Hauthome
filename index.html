@@ -76,16 +76,13 @@
     .proof span{display:block;font-size:12px;color:var(--muted);margin-top:-2px}
     .visual{
       min-height:590px;border-radius:36px;position:relative;overflow:hidden;
-      background:
-        linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.72)),
-        radial-gradient(circle at 24% 20%,#f8e9bd 0 18%,transparent 19%),
-        radial-gradient(circle at 76% 38%,#d5aa61 0 12%,transparent 13%),
-        linear-gradient(160deg,#8d642c 0%,#c8994f 42%,#f1deb1 100%);
+      background-image:linear-gradient(180deg,rgba(45,31,13,.02) 35%,rgba(45,31,13,.18) 100%),url('/images/hero.png');
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
       box-shadow:var(--shadow);isolation:isolate
     }
-    .visual:before{content:"";position:absolute;inset:0;background:
-      linear-gradient(120deg,transparent 0 42%,rgba(255,255,255,.38) 43% 44%,transparent 45%),
-      linear-gradient(20deg,transparent 0 60%,rgba(255,255,255,.2) 61% 63%,transparent 64%)}
+    .visual:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(55,37,14,.12) 100%);pointer-events:none}
     .visual .v-copy{position:absolute;left:42px;right:42px;bottom:42px;background:rgba(255,255,255,.88);backdrop-filter:blur(15px);padding:28px;border-radius:22px;border:1px solid rgba(255,255,255,.8);z-index:2}
     .visual .v-copy small{color:var(--gold-800);font-weight:600;letter-spacing:.12em;text-transform:uppercase}
     .visual .v-copy h3{font-size:35px;margin:6px 0 8px}
@@ -224,8 +221,7 @@
         </div>
         <div class="visual" aria-label="Concepto visual HAUT">
           <span class="v-tag">HAUT Clinical Center</span>
-          <div class="orb one"></div><div class="orb two"></div>
-          <div class="v-copy">
+                    <div class="v-copy">
             <small>Cuidado personalizado</small>
             <h3>Estética clínica con una experiencia serena y premium.</h3>
             <span style="font-size:13px;color:#776b5b">Zibatá · Álamos · Centro Sur</span>
