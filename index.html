@@ -38,8 +38,8 @@
       background:linear-gradient(90deg,var(--gold-900),var(--gold-600),var(--gold-900));
       color:white;min-height:39px;display:grid;place-items:center;overflow:hidden;position:relative
     }
-    .promo-track{display:flex;width:300%;transition:transform .55s ease}
-    .promo-slide{width:33.3333%;flex:0 0 33.3333%;text-align:center;padding:9px 42px;font-size:13px;letter-spacing:.02em}
+    .promo-track{display:flex;width:100%;transition:transform .55s ease}
+    .promo-slide{width:100%;flex:0 0 100%;text-align:center;padding:9px 42px;font-size:13px;letter-spacing:.02em}
     .promo-nav{position:absolute;right:15px;display:flex;gap:5px}
     .promo-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.45);border:0;padding:0}
     .promo-dot.active{background:#fff}
@@ -191,8 +191,8 @@
 <body>
   <div class="topbar">
     <div class="promo-track" id="promoTrack">
-      <div class="promo-slide">Valoración disponible para depilación láser · agenda tu cita</div>
-      <div class="promo-slide">Faciales, corporales y medicina estética en Querétaro</div>
+      <div class="promo-slide">3 sucursales: Zibatá · Álamos · Centro Sur</div>
+      <div class="promo-slide">Depilación láser · Faciales · Corporales · Medicina estética</div>
       <div class="promo-slide">Próximamente: app disponible en App Store y Google Play</div>
     </div>
     <div class="promo-nav">
@@ -343,7 +343,7 @@
     // Promo carousel
     const track=document.getElementById('promoTrack'), dots=[...document.querySelectorAll('.promo-dot')];
     let pi=0;
-    function promo(i){pi=i;track.style.transform=`translateX(-${i*33.3333}%)`;dots.forEach((d,n)=>d.classList.toggle('active',n===i))}
+    function promo(i){pi=i;track.style.transform=`translateX(-${i*100}%)`;dots.forEach((d,n)=>d.classList.toggle('active',n===i))}
     dots.forEach((d,i)=>d.onclick=()=>promo(i));
     setInterval(()=>promo((pi+1)%3),4500);
 
