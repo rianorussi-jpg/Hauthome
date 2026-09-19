@@ -87,6 +87,9 @@
     .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
     .tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 16px;color:#6f6658;cursor:pointer}
     .tab.active{background:var(--gold-800);border-color:var(--gold-800);color:#fff}
+    .laser-promo{max-width:440px;margin:0 auto 28px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
+    .laser-promo[hidden]{display:none}
+    .laser-promo img{display:block;width:100%;height:auto;object-fit:contain}
     .treatments{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:.2s;position:relative;overflow:hidden}
     .card:hover{transform:translateY(-4px);box-shadow:0 20px 55px rgba(117,83,35,.10)}
@@ -259,6 +262,9 @@
           <button class="tab" data-filter="body">Corporales</button>
           
         </div>
+        <div class="laser-promo" id="laserPromo" hidden>
+          <img src="/images/depilacion.png" alt="Depilación láser HAUT" loading="lazy">
+        </div>
         <div class="treatments">
           <article class="card" data-cat="laser" data-favorite="true"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.4 5.1L18 9l-4.6 1.9L12 16l-1.4-5.1L6 9l4.6-1.9L12 2Z"/><path d="M18.5 15.5l.7 2.3 2.3.7-2.3.7-.7 2.3-.7-2.3-2.3-.7 2.3-.7.7-2.3Z"/></svg></div><h3>Depilación láser diodo</h3><p>Tratamiento con tecnología láser de diodo que actúa sobre el folículo piloso para reducir progresivamente el crecimiento del vello de forma cómoda y eficaz.</p><div class="meta"><span class="pill">Axilas</span><span class="pill">Bikini</span><span class="pill">Piernas</span><span class="pill">Cuerpo completo</span></div></article>
           <article class="card" data-cat="facial" data-favorite="true"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3.8 4.4 6 7.3 6 10a6 6 0 1 1-12 0c0-2.7 2.2-5.6 6-10Z"/><path d="M9 14.5c.7 1.3 1.7 2 3 2.1"/></svg></div><h3>Hidrafacial</h3><p>Tratamiento facial que combina limpieza, exfoliación, extracción e hidratación profunda para mejorar la textura, luminosidad y apariencia general de la piel.</p><div class="meta"><span class="pill">Hidratación profunda</span><span class="pill">Renovación facial</span></div></article>
@@ -362,14 +368,17 @@
     menuBtn.onclick=()=>navLinks.classList.toggle('open');
     navLinks.querySelectorAll('a').forEach(a=>a.onclick=()=>navLinks.classList.remove('open'));
 
+    // Imagen promocional exclusiva de la categoría Depilación láser
+    const laserPromo=document.getElementById('laserPromo');
     // Treatment filters
     const tabs=[...document.querySelectorAll('.tab')], cards=[...document.querySelectorAll('.card[data-cat]')];
     cards.forEach(c=>c.hidden=c.dataset.favorite!=='true');
     tabs.forEach(t=>t.onclick=()=>{
       tabs.forEach(x=>x.classList.remove('active')); t.classList.add('active');
       const f=t.dataset.filter;
+      laserPromo.hidden=f!=='laser';
       cards.forEach(c=>{
-        const show = f==='all' || (f==='favorites' && c.dataset.favorite==='true') || c.dataset.cat===f;
+        const show = f==='all' || (f==='favorites' && c.dataset.favorite==='true') || (f!=='laser' && c.dataset.cat===f);
         c.hidden=!show;
       });
     });
