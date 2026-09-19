@@ -87,9 +87,13 @@
     .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
     .tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 16px;color:#6f6658;cursor:pointer}
     .tab.active{background:var(--gold-800);border-color:var(--gold-800);color:#fff}
-    .laser-promo{max-width:440px;margin:0 auto 28px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
-    .laser-promo[hidden]{display:none}
-    .laser-promo img{display:block;width:100%;height:auto;object-fit:contain}
+    .laser-promo{padding:0;display:flex;align-items:center;justify-content:center}
+    .laser-promo[hidden]{display:none!important}
+    .laser-promo img{display:block;width:100%;height:100%;max-height:340px;object-fit:contain}
+    .hero-social{display:flex;align-items:center;gap:12px;align-self:center}
+    .hero-social a{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--gold-800);background:#fff;transition:.2s}
+    .hero-social a:hover{background:var(--gold-100);transform:translateY(-2px)}
+    .hero-social svg{width:19px;height:19px;fill:currentColor}
     .treatments{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:.2s;position:relative;overflow:hidden}
     .card:hover{transform:translateY(-4px);box-shadow:0 20px 55px rgba(117,83,35,.10)}
@@ -99,9 +103,6 @@
     .meta{display:flex;gap:8px;flex-wrap:wrap}
     .pill{font-size:11px;background:#fbf7ee;border:1px solid #eee1c8;border-radius:999px;padding:5px 9px;color:#74634b}
     .card[hidden]{display:none}
-    .laser-promo[hidden]{display:none!important}
-    .laser-promo{max-width:300px;margin:0 auto 26px}
-    .laser-promo img{display:block;width:100%;height:auto;object-fit:contain}
     .card .icon{font-size:26px;font-family:Georgia,serif}
     .feature-wrap{display:grid;grid-template-columns:.92fr 1.08fr;gap:60px;align-items:center}
     .feature-art{
@@ -242,6 +243,10 @@
             <div class="proof"><strong>3</strong><span>sucursales en Querétaro</span></div>
             
             <div class="proof"><strong>+50</strong><span>opciones de tratamiento</span></div>
+            <div class="hero-social" aria-label="Redes sociales de HAUT">
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook de HAUT" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"/></svg></a>
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de HAUT" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.5-2.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/></svg></a>
+            </div>
           </div>
         </div>
         <div class="visual" aria-label="Galería de imágenes HAUT">
@@ -266,9 +271,6 @@
           <button class="tab" data-filter="body">Corporales</button>
           
         </div>
-        <div class="laser-promo" id="laserPromo" hidden>
-          <img src="/images/depilacion.png" alt="Depilación láser HAUT" loading="lazy">
-        </div>
         <div class="treatments">
           <article class="card" data-cat="facial" data-favorite="true"><div class="icon" aria-hidden="true">✧</div><h3>Hollywood Peel</h3><p>Peeling con láser que ayuda a mejorar la luminosidad y la apariencia de la textura de la piel.</p><div class="meta"><span class="pill">Renovación facial</span><span class="pill">Tono y textura</span></div></article>
           <article class="card" data-cat="laser" data-favorite="true"><div class="icon" aria-hidden="true">✦</div><h3>Depilación corporal</h3><p>Láser de diodo para reducir progresivamente el crecimiento del vello en zonas del cuerpo.</p><div class="meta"><span class="pill">Piernas, axilas y otras zonas</span><span class="pill">Sesiones según valoración</span></div></article>
@@ -287,6 +289,7 @@
           <article class="card" data-cat="facial"><div class="icon" aria-hidden="true">✧</div><h3>Dermapen</h3><p>Micropunciones controladas que estimulan procesos de reparación de la piel y pueden mejorar su textura.</p><div class="meta"><span class="pill">Microneedling</span><span class="pill">Textura</span></div></article>
           <article class="card" data-cat="facial"><div class="icon" aria-hidden="true">✧</div><h3>PDRN de salmón</h3><p>Tratamiento con polidesoxirribonucleótidos (PDRN) utilizado en protocolos de cuidado y revitalización cutánea; requiere valoración profesional.</p><div class="meta"><span class="pill">Cuidado facial</span><span class="pill">Valoración previa</span></div></article>
           <article class="card" data-cat="laser"><div class="icon" aria-hidden="true">✦</div><h3>Depilación facial</h3><p>Láser de diodo para reducir progresivamente el vello en zonas del rostro, según valoración de piel y vello.</p><div class="meta"><span class="pill">Rostro</span><span class="pill">Sesiones según valoración</span></div></article>
+          <article class="card laser-promo" id="laserPromo" data-cat="laser" hidden aria-label="Imagen promocional de depilación láser"><img src="/images/depilacion.png" alt="Depilación láser HAUT" loading="lazy"></article>
         </div>
       </div>
     </section>
@@ -379,17 +382,14 @@
     menuBtn.onclick=()=>navLinks.classList.toggle('open');
     navLinks.querySelectorAll('a').forEach(a=>a.onclick=()=>navLinks.classList.remove('open'));
 
-    // Imagen promocional exclusiva de la categoría Depilación láser
-    const laserPromo=document.getElementById('laserPromo');
     // Treatment filters
     const tabs=[...document.querySelectorAll('.tab')], cards=[...document.querySelectorAll('.card[data-cat]')];
     cards.forEach(c=>c.hidden=c.dataset.favorite!=='true');
     tabs.forEach(t=>t.onclick=()=>{
       tabs.forEach(x=>x.classList.remove('active')); t.classList.add('active');
       const f=t.dataset.filter;
-      laserPromo.hidden=f!=='laser';
       cards.forEach(c=>{
-        const show = f==='all' || (f==='favorites' && c.dataset.favorite==='true') || c.dataset.cat===f;
+        const show = c.id==='laserPromo' ? f==='laser' : (f==='all' || (f==='favorites' && c.dataset.favorite==='true') || c.dataset.cat===f);
         c.hidden=!show;
       });
     });
