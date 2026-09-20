@@ -367,7 +367,7 @@
 
   <div class="wa-picker" id="waPicker" role="dialog" aria-label="Selecciona una sucursal" aria-hidden="true">
     <button type="button" class="wa-picker-close" id="waPickerClose" aria-label="Cerrar selector">×</button>
-    <p class="wa-picker-title">¿En qué sucursal deseas agendar?</p>
+    <p class="wa-picker-title" id="waPickerTitle">¿En qué sucursal deseas agendar?</p>
     <a data-wa-option="zibata" href="https://wa.me/524421848318" target="_blank" rel="noopener noreferrer">Sucursal Zibatá</a>
     <a data-wa-option="alamos" href="https://wa.me/524428018951" target="_blank" rel="noopener noreferrer">Sucursal Álamos</a>
     <a data-wa-option="centrosur" href="https://wa.me/524423447553" target="_blank" rel="noopener noreferrer">Sucursal Centro Sur</a>
@@ -421,6 +421,7 @@
         event.preventDefault();
         if(waPicker.classList.contains('open')&&waOrigin===link){closeWaPicker();return;}
         waOrigin=link;
+        document.getElementById('waPickerTitle').textContent=link.classList.contains('wa')?'¿A qué sucursal quieres contactar?':'¿En qué sucursal deseas agendar?';
         waPicker.classList.add('open');waPicker.setAttribute('aria-hidden','false');
         const r=link.getBoundingClientRect(), margin=12;
         waPicker.style.visibility='hidden';waPicker.style.display='block';
@@ -436,7 +437,11 @@
       const branch=option.dataset.waOption;
       const msg=`Hola, me gustaría agendar una cita en HAUT, sucursal ${waNames[branch]}. ¿Me pueden compartir disponibilidad?`;
       option.href=`https://wa.me/${waNumbers[branch]}?text=${encodeURIComponent(msg)}`;
-      option.addEventListener('click',closeWaPicker);
+      option.addEventListener('click',()=>{
+        const msg=waOrigin?.classList.contains('wa')?`Hola, quiero contactar a HAUT, sucursal ${waNames[branch]}.`:`Hola, me gustaría agendar una cita en HAUT, sucursal ${waNames[branch]}. ¿Me pueden compartir disponibilidad?`;
+        option.href=`https://wa.me/${waNumbers[branch]}?text=${encodeURIComponent(msg)}`;
+        closeWaPicker();
+      });
     });
     document.getElementById('waPickerClose').addEventListener('click',closeWaPicker);
     document.addEventListener('click',e=>{if(!waPicker.contains(e.target)&&!e.target.closest('.wa-link'))closeWaPicker();});
