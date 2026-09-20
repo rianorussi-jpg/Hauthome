@@ -197,6 +197,14 @@
       .treatments,.branches{grid-template-columns:1fr}.feature-art{height:360px}.cta-box{padding:38px 25px;display:block}.cta-box .btn{margin-top:22px}
       .footer-grid{grid-template-columns:1fr}.copyright{display:block}.hero-proof{gap:18px}.proof strong{font-size:26px}
     }
+  
+    /* Selector de sucursal para agendar por WhatsApp */
+    .wa-picker{position:fixed;z-index:90;width:min(310px,calc(100vw - 32px));padding:14px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 55px rgba(35,27,18,.2);display:none}
+    .wa-picker.open{display:block}
+    .wa-picker-title{font-size:14px;font-weight:700;color:var(--gold-800);margin:0 0 10px}
+    .wa-picker a{display:block;padding:11px 12px;margin-top:6px;border:1px solid var(--line);border-radius:11px;text-decoration:none;color:var(--gold-800);background:#fbf8f1;font-size:14px}
+    .wa-picker a:hover,.wa-picker a:focus-visible{background:var(--gold-200)}
+    .wa-picker-close{position:absolute;right:10px;top:8px;border:0;background:transparent;cursor:pointer;font-size:21px;color:var(--gold-800)}
   </style>
 </head>
 <body>
@@ -244,8 +252,8 @@
             
             <div class="proof"><strong>+50</strong><span>opciones de tratamiento</span></div>
             <div class="hero-social" aria-label="Redes sociales de HAUT">
-              <a href="https://www.facebook.com/hautspaqro/" target="_blank" rel="noopener noreferrer" aria-label="Facebook de HAUT" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"/></svg></a>
-              <a href="https://www.instagram.com/haut.clinical" target="_blank" rel="noopener noreferrer" aria-label="Instagram de HAUT" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.5-2.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/></svg></a>
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook de HAUT" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"/></svg></a>
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de HAUT" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.5-2.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/></svg></a>
             </div>
           </div>
         </div>
@@ -394,15 +402,38 @@
       });
     });
 
-    // WhatsApp
-    document.querySelectorAll('.wa-link').forEach(a=>{
-      const branch=a.dataset.branch||'general';
-      const msg=branch==='general'
-        ? 'Hola, me gustaría agendar una cita en HAUT Clinical Center. ¿Me pueden ayudar a elegir sucursal y tratamiento?'
-        : `Hola, me gustaría conocer promociones y agendar una cita en HAUT ${branch}.`;
-      a.href='https://wa.me/524428018951?text='+encodeURIComponent(msg);
-      a.target='_blank';a.rel='noopener';
+    // Selector de sucursal para todos los accesos a WhatsApp.
+    const waPicker=document.getElementById('waPicker');
+    const waNumbers={zibata:'524421848318',alamos:'524428018951',centrosur:'524423447553'};
+    const waNames={zibata:'Zibatá',alamos:'Álamos',centrosur:'Centro Sur'};
+    let waOrigin=null;
+    function closeWaPicker(){waPicker.classList.remove('open');waPicker.setAttribute('aria-hidden','true');}
+    document.querySelectorAll('.wa-link').forEach(link=>{
+      link.removeAttribute('target');
+      link.addEventListener('click',event=>{
+        event.preventDefault();
+        if(waPicker.classList.contains('open')&&waOrigin===link){closeWaPicker();return;}
+        waOrigin=link;
+        waPicker.classList.add('open');waPicker.setAttribute('aria-hidden','false');
+        const r=link.getBoundingClientRect(), margin=12;
+        waPicker.style.visibility='hidden';waPicker.style.display='block';
+        const w=waPicker.offsetWidth,h=waPicker.offsetHeight;
+        const left=Math.max(margin,Math.min(r.left,window.innerWidth-w-margin));
+        const below=r.bottom+8,above=r.top-h-8;
+        const top=below+h<=window.innerHeight-margin?below:above>=margin?above:Math.max(margin,window.innerHeight-h-margin);
+        waPicker.style.left=left+'px';waPicker.style.top=top+'px';
+        waPicker.style.visibility='';waPicker.style.display='';
+      });
     });
+    waPicker.querySelectorAll('[data-wa-option]').forEach(option=>{
+      const branch=option.dataset.waOption;
+      const msg=`Hola, me gustaría agendar una cita en HAUT, sucursal ${waNames[branch]}. ¿Me pueden compartir disponibilidad?`;
+      option.href=`https://wa.me/${waNumbers[branch]}?text=${encodeURIComponent(msg)}`;
+      option.addEventListener('click',closeWaPicker);
+    });
+    document.getElementById('waPickerClose').addEventListener('click',closeWaPicker);
+    document.addEventListener('click',e=>{if(!waPicker.contains(e.target)&&!e.target.closest('.wa-link'))closeWaPicker();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeWaPicker();});
   </script>
 </body>
 </html>
