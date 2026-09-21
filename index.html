@@ -206,8 +206,10 @@
     .wa-picker a:hover,.wa-picker a:focus-visible{background:var(--gold-200)}
     .wa-picker-close{position:absolute;right:10px;top:8px;border:0;background:transparent;cursor:pointer;font-size:21px;color:var(--gold-800)}
   
+    /* Respetar el filtrado incluso en las fichas con display flex */
+    .treatments .card[hidden]{display:none!important}
     /* Fichas de tratamientos con fotografía a la izquierda */
-    .treatments .card:not(.laser-promo){display:flex;align-items:stretch;gap:0;padding:0;min-height:225px}
+    .treatments .card:not(.laser-promo):not([hidden]){display:flex;align-items:stretch;gap:0;padding:0;min-height:225px}
     .treatments .card:not(.laser-promo) .treatment-photo{display:block;flex:0 0 35%;width:35%;min-width:0;object-fit:cover;object-position:center;background:var(--gold-100)}
     .treatments .card:not(.laser-promo) .treatment-info{flex:1;min-width:0;padding:20px 17px;display:flex;flex-direction:column;justify-content:center}
     .treatments .card:not(.laser-promo) h3{font-size:clamp(22px,2vw,28px);line-height:1.08;margin:0 0 10px}
